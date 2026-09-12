@@ -1,0 +1,7 @@
+kirill.korins.ky 
+rsadowski.de
+https://github.com/ligurio/awesome-openbsd
+https://www.commandlinefu.com/
+https://unixdigest.com/openbsd-router-guide/
+https://github.com/bayandin/awesome-awesomeness
+

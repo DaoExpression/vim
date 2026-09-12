@@ -36,7 +36,7 @@ hide_edge_borders both
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -135,18 +135,6 @@ bindsym $mod+Shift+0 move container to workspace $tag0
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-#bindsym $mod+Shift+e exit
-mode "(l)ock (s)leep (h)ybernate (r)eboot (p)oweroff (e)xit-i3" {
-        bindsym l exec ~/.i3/bin/i3lock.sh; mode "default"
-        bindsym s exec ~/.i3/bin/i3lock.sh && systemctl suspend; mode "default"
-        bindsym h exec ~/.i3/bin/i3lock.sh && systemctl hibernate; mode "default"
-        bindsym p exec systemctl poweroff; mode "default"
-        bindsym r exec systemctl reboot; mode "default"
-        bindsym e exec --no-startup-id i3-msg exit; mode "default"
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-}
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -155,7 +143,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+b bar mode toggle
 bar {
         i3bar_command /usr/bin/i3bar
-        status_command i3blocks -c ~/.i3/i3blocks.conf
+        status_command i3status
         #font pango:DejaVu Sans Mono 12 tray_output primary
         position top
         font pango:Terminus 12
@@ -170,24 +158,9 @@ bar {
         }
 }
 
-# start application
-exec --no-startup-id feh --bg-fill ~/bgs/bg.jpg
-exec --no-startup-id ~/.i3/bin/bar
-exec --no-startup-id ~/.i3/bin/xinput-fix
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
-bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle # mute sound
-
-# Screenshot
-bindsym Print exec scrot -e 'mv $f ~/tmp/'
-
 bindsym XF86Launch1 exec xset dpms force off
 
 # Assign workspace
-assign [class="Sakura"] workspace number 1 $tag1
-assign [class="thunderbird"] workspace number 5 $tag5
 
 # shortcut
 #bindsym $mod+Mod1+r exec /usr/bin/rxvt -e ranger
